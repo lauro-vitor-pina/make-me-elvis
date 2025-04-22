@@ -1,6 +1,6 @@
 <?php
 require('../../functions/repository/common/dbc_repository.php');
-require('../../functions/repository/email_list/select_email_list_repository.php');
+require('../../functions/repository/email_list/email_list_repository_select.php');
 require('../../functions/repository/email_list/send_email_list_repository.php');
 
 $subject = $_POST['subject'];
@@ -8,7 +8,7 @@ $body = $_POST['body'];
 
 $dbc = get_dbc_repository();
 
-$result_select = select_email_list_repository($dbc);
+$result_select = email_list_repository_select($dbc);
 
 close_dbc_repository($dbc);
 
@@ -20,7 +20,7 @@ while ($row = mysqli_fetch_array($result_select)) {
 
     $message = "Dear $first_name $last_name, \n $body";
 
-    $result_send = send_email_list_repository($to, $subject, $message);
+    $result_send = email_list_repository_send_email($to, $subject, $message);
 
     if ($result_send) {
         echo 'Email sent to: ' . $to . '<br/>';

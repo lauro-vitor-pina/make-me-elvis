@@ -1,7 +1,7 @@
 <?php
 
 
-function insert_email_list_repository($dbc, $first_name, $last_name, $email)
+function email_list_repository_insert($dbc, $first_name, $last_name, $email)
 {
     $query = 'INSERT INTO email_list (first_name, last_name, email) ' . "VALUES ('$first_name','$last_name','$email')";
 

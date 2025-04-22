@@ -1,7 +1,7 @@
 <?php
 
 
-function delete_email_list_repository($dbc, $email)
+function email_list_repository_delete($dbc, $email)
 {
     $query = "DELETE FROM email_list WHERE email = '$email' ";
 

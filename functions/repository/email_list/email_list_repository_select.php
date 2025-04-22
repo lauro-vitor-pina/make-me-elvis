@@ -1,6 +1,6 @@
 <?php
 
-function select_email_list_repository($dbc)
+function email_list_repository_select($dbc)
 {
     $query = 'SELECT first_name, last_name, email FROM email_list';
 

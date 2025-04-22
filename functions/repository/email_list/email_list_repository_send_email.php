@@ -1,7 +1,7 @@
 
 <?php
 
-function send_email_list_repository($to, $subject, $message)
+function email_list_repository_send_email($to, $subject, $message)
 {
     $file = __DIR__ . '/../../../config.json';
 
