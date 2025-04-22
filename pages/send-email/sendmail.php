@@ -6,10 +6,16 @@ require('../../functions/repository/email_list/email_list_repository_send_email.
 $subject = $_POST['subject'];
 $body = $_POST['body'];
 
-if(empty($subject) || empty($body)){
-    echo 'You forgot the email subject or body text.';
+if (empty($subject)) {
+    echo 'You forgot the email subject.';
     return;
 }
+
+if (empty($body)) {
+    echo 'You forgot the email body text.';
+    return;
+}
+
 
 $dbc = get_dbc_repository();
 
