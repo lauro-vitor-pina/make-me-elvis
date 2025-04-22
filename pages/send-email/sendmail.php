@@ -1,10 +1,15 @@
 <?php
 require('../../functions/repository/common/dbc_repository.php');
 require('../../functions/repository/email_list/email_list_repository_select.php');
-require('../../functions/repository/email_list/send_email_list_repository.php');
+require('../../functions/repository/email_list/email_list_repository_send_email.php');
 
 $subject = $_POST['subject'];
 $body = $_POST['body'];
+
+if(empty($subject) || empty($body)){
+    echo 'You forgot the email subject or body text.';
+    return;
+}
 
 $dbc = get_dbc_repository();
 
