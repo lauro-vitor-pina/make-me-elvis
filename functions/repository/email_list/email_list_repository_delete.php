@@ -1,9 +1,11 @@
 <?php
 
 
-function email_list_repository_delete($dbc, $email)
+function email_list_repository_delete($dbc, $ids_to_delete)
 {
-    $query = "DELETE FROM email_list WHERE email = '$email' ";
+    $id_list = implode(',', $ids_to_delete);
+
+    $query = "DELETE FROM email_list WHERE  id IN ($id_list)";
 
     mysqli_query($dbc, $query) or die('Error to delete an email.');
 
