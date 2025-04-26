@@ -1,28 +1,10 @@
 <?php
-require('../../functions/repository/common/dbc_repository.php');
-require('../../functions/repository/email_list/email_list_repository_delete.php');
-require('../../functions/repository/email_list/email_list_repository_select.php');
 
-$result_delete  = false;
+require('../../controllers/email_list_controller_remove_email.php');
 
-$dbc = get_dbc_repository();
-
-if (isset($_POST['submit'])) {
-
-    $ids_to_delete = $_POST['ids_to_delete'] ?? [];
-    
-    if (sizeof($ids_to_delete) > 0) {
-        $result_delete = email_list_repository_delete($dbc, $ids_to_delete);
-    }
-}
-
-$result_select = email_list_repository_select($dbc);
-
-close_dbc_repository($dbc);
+$result_view_model = email_list_controller_remove_email();
 
 ?>
-
-
 
 <html lang="en">
 
@@ -51,7 +33,7 @@ close_dbc_repository($dbc);
                         <tr>
                             <td>
                                 <?php
-                                if ($result_delete) {
+                                if ($result_view_model['result_delete']) {
                                     echo 'Customer(s) removed.';
                                 }
                                 ?>
@@ -67,7 +49,7 @@ close_dbc_repository($dbc);
                                         <th>last name</th>
                                         <th>email</th>
                                     </tr>
-                                    <?php while ($row = mysqli_fetch_array($result_select)) { ?>
+                                    <?php while ($row = mysqli_fetch_array($result_view_model['result_select'])) { ?>
                                         <tr>
                                             <td>
                                                 <input type="checkbox" name="ids_to_delete[]" value="<?php echo $row['id']; ?>">

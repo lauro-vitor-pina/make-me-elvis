@@ -1,17 +1,15 @@
 <?php
+require(__DIR__ . '../../repository/common/dbc_repository.php');
+require(__DIR__ . '../../repository/email_list/email_list_repository_select.php');
+require(__DIR__ . '../../repository/email_list/email_list_repository_send_email.php');
 
-require(__DIR__ . '../../../repository/common/dbc_repository.php');
-require(__DIR__ . '../../../repository/email_list/email_list_repository_select.php');
-require(__DIR__ . '../../../repository/email_list/email_list_repository_send_email.php');
-
-
-function email_list_service_send_mail($subject, $body)
+function email_list_service_send_mail($body, $subject)
 {
-    $dbc = get_dbc_repository();
+    $dbc = dbc_repository_get_connection();
 
     $result_select = email_list_repository_select($dbc);
 
-    close_dbc_repository($dbc);
+    dbc_repository_close_connection($dbc);
 
     while ($row = mysqli_fetch_array($result_select)) {
 

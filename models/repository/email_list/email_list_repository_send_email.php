@@ -1,9 +1,11 @@
 
 <?php
 
+require_once (__DIR__ . '../../common/config_repository.php');
+
 function email_list_repository_send_email($to, $subject, $message)
 {
-    $file = __DIR__ . '/../../../config.json';
+    $file = __DIR__ . '/../../../config.prd.json';
 
     $contents = file_get_contents($file);
 
